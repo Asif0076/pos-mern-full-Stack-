@@ -3,7 +3,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const dotenv = require('dotenv')
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 6000;
 const connectionDB = require('./config/config')
 //dotenv config
 dotenv.config()
