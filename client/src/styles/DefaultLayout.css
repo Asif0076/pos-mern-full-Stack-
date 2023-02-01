@@ -15,3 +15,31 @@
     margin: 16px;
     background: rgba(255, 255, 255, 0.3);
   }
+
+.ant-layout-header{
+  border-radius: 5px;
+  box-shadow: 0 0 3px #ccc;
+  margin: 10px;
+}
+
+.ant-layout-has-sider{
+   padding: 5px !important;
+}
+
+.ant-layout.ant-layout-has-sider{
+  height: 100vh;
+}
+
+.ant-layout-sider{
+  border-radius: 10px !important;
+  padding-top: 10px !important;
+}
+
+.anticon svg{
+  height: 20px;
+  width: 20px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}

@@ -8,6 +8,7 @@ import {
   } from '@ant-design/icons';
   import { Layout, Menu, theme } from 'antd';
   import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
   const { Header, Sider, Content } = Layout;
  
  
@@ -20,29 +21,28 @@ import {
     return (
       <Layout>
         <Sider trigger={null} collapsible collapsed={collapsed}>
-          <div className="logo" />
-          <Menu
-            theme="dark"
-            mode="inline"
-            defaultSelectedKeys={['1']}
-            items={[
-              {
-                key: '1',
-                icon: <UserOutlined />,
-                label: 'nav 1',
-              },
-              {
-                key: '2',
-                icon: <VideoCameraOutlined />,
-                label: 'nav 2',
-              },
-              {
-                key: '3',
-                icon: <UploadOutlined />,
-                label: 'nav 3',
-              },
-            ]}
-          />
+          <div className="logo">
+            <h2 className='text-center text-light font-wight-bold'>ACE PIZZA</h2>
+          </div>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={window.location.pathname}>
+            <Menu.Item key='/' icon={<UserOutlined />}>
+            <Link to='/'>Home</Link>
+            </Menu.Item>
+            <Menu.Item key='/bills' icon={<UserOutlined />}>
+            <Link to='/bills' >Bills</Link>
+            </Menu.Item>
+            <Menu.Item key='/items' icon={<UserOutlined />}>
+            <Link to='/items' >Items</Link>
+            </Menu.Item>
+            <Menu.Item key='/customers' icon={<UserOutlined />}>
+            <Link to='/customers' >Customers</Link>
+            </Menu.Item>
+            <Menu.Item key='/logout' icon={<UserOutlined />}>
+            LogOut
+            </Menu.Item>
+          </Menu>
+          
+
         </Sider>
         <Layout className="site-layout">
           <Header
