@@ -19,8 +19,6 @@ const itemSchema = new mongoose.Schema({
     }
 },{timestamp:true})
 
-const Items = mongoose.model('Item',itemSchema, {
-    new:true
-});
+const Item = mongoose.model('Item',itemSchema);
 
-module.exports = Items;
+module.exports = Item;

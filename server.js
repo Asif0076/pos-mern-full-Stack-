@@ -3,11 +3,13 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const dotenv = require('dotenv')
-const port = process.env.PORT || 3000
-require('./config/config')
-//env config
+const port = process.env.PORT || 3000;
+const connectionDB = require('./config/config')
+//dotenv config
 dotenv.config()
 
+// db config
+connectionDB();
 
 //rest object
 const app = express()
@@ -20,10 +22,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(morgan('dev'))
 
 //routes
-app.get('/', (req, res) => {
-  res.send('<h1>Pos BackEnd</h1>')
-})
-
+app.use('/api/items', require('./routers/itemRouter'))
+ 
 //listen
 app.listen(port, () => {
   console.log(`Listening at Port : ${port}`)
