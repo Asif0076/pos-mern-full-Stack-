@@ -20,6 +20,14 @@
   border-radius: 5px;
   box-shadow: 0 0 3px #ccc;
   margin: 10px;
+  display: flex;
+  align-items: center;
+justify-content: space-between;
+line-height: 0;
+}
+
+.ant-layout-content{
+  overflow: auto;
 }
 
 .ant-layout-has-sider{
@@ -42,4 +50,18 @@
   display: flex;
   align-items: center;
   margin-left: 10px;
+}
+
+.card-item {
+  display: flex;
+  padding-left: 20px;
+  padding-right: 30px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.card-item P {
+  margin-top: 20px;
+  font-weight: bold;
+  margin-right: 10px;
 }

@@ -3,3 +3,22 @@
 body{
     font-family: 'Sora', sans-serif;
 }
+
+.item-button button{
+    margin-top: 20px;
+    width: 200px;
+    background-color: rgb(65, 160, 65);
+    color: white;
+}
+
+.spinner{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+}
+.spinner-border{
+    height: 50px;
+    width: 50px;
+}

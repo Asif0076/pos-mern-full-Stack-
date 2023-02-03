@@ -1,60 +1,76 @@
 import '../styles/DefaultLayout.css';
+import {useSelector} from "react-redux"
 import {
+  ShoppingCartOutlined,
     MenuFoldOutlined,
     MenuUnfoldOutlined,
-    UploadOutlined,
     UserOutlined,
-    VideoCameraOutlined,
+    LogoutOutlined,
+    HomeOutlined,
+    CopyOutlined,
+    UnorderedListOutlined,
   } from '@ant-design/icons';
   import { Layout, Menu, theme } from 'antd';
-  import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+  import React, { useState,useEffect } from 'react';
+import { Link, useNavigate} from 'react-router-dom';
+import Spinner from './Spinner';
+
   const { Header, Sider, Content } = Layout;
  
  
-  const DefaultLayout = () => {
-    const [collapsed, setCollapsed] = useState(false);
+  const DefaultLayout = ({ children }) => {
+    const navigate = useNavigate()
+    const {cartItems, loading} = useSelector((state) => state.rootRuducer)
+    const [collapsed, setCollapsed ] = useState(false);
+
     const {
       token: { colorBgContainer },
     } = theme.useToken();
 
+//to get local storage data
+useEffect(() => {
+localStorage.setItem('cardItems', JSON.stringify(cartItems))
+},[cartItems])  
+
     return (
       <Layout>
+        {loading && <Spinner/>}
         <Sider trigger={null} collapsible collapsed={collapsed}>
           <div className="logo">
             <h2 className='text-center text-light font-wight-bold'>ACE PIZZA</h2>
           </div>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={window.location.pathname}>
-            <Menu.Item key='/' icon={<UserOutlined />}>
+            <Menu.Item key='/' icon={<HomeOutlined />}>
             <Link to='/'>Home</Link>
             </Menu.Item>
-            <Menu.Item key='/bills' icon={<UserOutlined />}>
+            <Menu.Item key='/bills' icon={<CopyOutlined />}>
             <Link to='/bills' >Bills</Link>
             </Menu.Item>
-            <Menu.Item key='/items' icon={<UserOutlined />}>
+            <Menu.Item key='/items' icon={<UnorderedListOutlined />}>
             <Link to='/items' >Items</Link>
             </Menu.Item>
             <Menu.Item key='/customers' icon={<UserOutlined />}>
             <Link to='/customers' >Customers</Link>
             </Menu.Item>
-            <Menu.Item key='/logout' icon={<UserOutlined />}>
+            <Menu.Item key='/logout' icon={<LogoutOutlined />}>
             LogOut
             </Menu.Item>
           </Menu>
-          
-
-        </Sider>
+          </Sider>
+        
         <Layout className="site-layout">
           <Header
-            style={{
-              padding: 0,
-              background: colorBgContainer,
-            }}
-          >
+            style={{padding: 0,background: colorBgContainer,}}>
             {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',
               onClick: () => setCollapsed(!collapsed),
             })}
+
+            <div className='card-item' onClick={() => navigate('/cart')}>
+              <p>{cartItems.length}</p>
+              <ShoppingCartOutlined/>
+            </div>
+          
           </Header>
           <Content
             style={{
@@ -64,7 +80,8 @@ import { Link } from 'react-router-dom';
               background: colorBgContainer,
             }}
           >
-            Content
+           {children}
+        
           </Content>
         </Layout>
       </Layout>
